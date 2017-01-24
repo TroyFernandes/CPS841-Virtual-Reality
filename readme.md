@@ -32,7 +32,17 @@ When prompted, use the following credentials:
 **Login:** (Your whole scs **e-mail**)
 **Password:** ([Your GitLab password](https://gitlab.scs.ryerson.ca/profile/password/edit))
 
-When you start a new lab, create a new unity project inside `CPS841-Labs` and name it appropriately (Lab1, Lab2, etc) Copy the example gitignore and attribution files. Once you save your project in Unity, your folder structure should look like this (For Lab 1):
+### Starting a new lab:
+
+When you start a new lab, create a new Unity project inside `CPS841-Labs` and name it appropriately (Lab1, Lab2, etc) Copy the example gitignore and attribution files. 
+
+
+In order for Unity to play nice with git, you have to change the way it stores files:
+Go to **Edit**>**Project Settings**>**Editor**
+In the inspector, change **Version Control Mode** to `Visible Meta Files`
+Also change **Asset Serialization Mode** to `Force Text`
+
+Once you save your project in Unity, your folder structure should look like this (For Lab 1):
 -   CPS841-Labs/
     -   Lab1/
         -   Assets/
@@ -49,13 +59,6 @@ When you start a new lab, create a new unity project inside `CPS841-Labs` and na
     -   readme.txt
 
 The files that are ~~crossed out~~ are not essential to your project. In fact, they may not even be there. They are temporary files. Don't worry about deleting them. If you've set up your gitignore correctly, they should be automatically ignored when you commit/push.
-
-In order for Unity to play nice with git, you have to change the way it stores files:
-Go to **Edit**>**Project Settings**>**Editor**
-In the inspector, change **Version Control Mode** to `Visible Meta Files`
-Also change **Asset Serialization Mode** to `Force Text`
-
-Failure to do so could result in a lot of lost work.
 ______________
 ### Saving your work.
 Periodically, as you're working, it's a good idea to commit and push. (Remember that the lab computers get wiped when you log off). To do this, enter the following commands:
