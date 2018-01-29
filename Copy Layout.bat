@@ -1,0 +1,1 @@
+COPY ".\Troy's Unity Layout.wlt" "C:\Users\User\AppData\Roaming\Unity\Editor-5.x\Preferences\Layouts"
