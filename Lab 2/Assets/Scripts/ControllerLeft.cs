@@ -3,33 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControllerLeft : MonoBehaviour {
-    //private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
-    private SteamVR_Controller.Device device;
-    private SteamVR_TrackedObject trackedObj;
-    private SteamVR_TrackedController controller;
-
     public Rigidbody balloon;
+    public Transform controllerTransform;
+    SteamVR_TrackedController controller;
+    public List<GameObject> Children;
 
-	// Use this for initialization
-	void Start () {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
+    // Use this for initialization
+    void Start() {
         controller = GetComponent<SteamVR_TrackedController>();
-        controller.PadClicked += Controller_PadClicked;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetHairTrigger()) {
-            Instantiate(balloon);
+        if (controller == null) {
+            controller = gameObject.AddComponent<SteamVR_TrackedController>();
         }
+        controller.TriggerClicked += new ClickedEventHandler(createBalloon);
+        controller.TriggerUnclicked += new ClickedEventHandler(Release);
     }
-    private void Controller_PadClicked(object sender, ClickedEventArgs e) {
-        if (device.GetAxis().x != 0 || device.GetAxis().y != 0) {
-            Debug.Log(device.GetAxis().x + " " + device.GetAxis().y);
-        }
-        if (device.GetHairTrigger()) {
-            Instantiate(balloon);
-        }
-}
+
+    // Update is called once per frame
+    void Update() {
+
+    }
+
+    // Fire when trigger on controller clicks
+    void createBalloon(object sender, ClickedEventArgs e) {
+        Debug.Log("Fired");
+        //Instantiate(balloon,transform.position,transform.rotation);
+        //GameObject obj = Instantiate(balloon.gameObject,transform.position,transform.rotation);
+        var go = Instantiate(balloon.gameObject, transform.position, transform.rotation) as GameObject;
+        go.transform.parent = controllerTransform;
+        Children.Add(go);
+
+    }
+
+    void Release(object sender, ClickedEventArgs e) {
+        
+         foreach (Transform child in controllerTransform)
+         {
+             if (child.tag == "balloon")
+             {
+                child.GetComponent<ConstantForce>().enabled = true;
+                child.GetComponent<Rigidbody>().useGravity = true;
+                child.parent = null;
+             }
+         }
+    }
+
 }
