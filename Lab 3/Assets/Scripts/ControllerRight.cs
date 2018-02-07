@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControllerRight : MonoBehaviour {
-
-    public Rigidbody balloon;
+    public GameObject transitionCube;
     SteamVR_TrackedController controller;
     public LineRenderer lineRenderer;
     GameObject indicator;
@@ -12,6 +11,7 @@ public class ControllerRight : MonoBehaviour {
 
     private Ray ray;
     RaycastHit hit2;
+
 
     // Use this for initialization
     void Start() {
@@ -56,5 +56,8 @@ public class ControllerRight : MonoBehaviour {
     void Fire(object sender, ClickedEventArgs e) {
         Debug.Log("Trigger Pressed");
         player.GetComponent<Transform>().position = hit2.point;
+
     }
+
+
 }
