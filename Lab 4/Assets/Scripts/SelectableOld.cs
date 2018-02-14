@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 
-public class Selectable : MonoBehaviour {
+public class SelectableOld : MonoBehaviour {
     Material[] materials;
     public Material outlineMaterial;
-    //public void Remove()
-    // {
-    //  Destroy(gameObject);
-    //}
+
     void Start() {
         materials = GetComponent<Renderer>().materials;
         gameObject.GetComponent<Renderer>().material = null;
