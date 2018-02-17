@@ -32,15 +32,18 @@ public class ControllerRight : MonoBehaviour {
         RaycastHit hit;
 
         //Instantiate(balloon);
-        if (Physics.Raycast(transform.position, transform.forward * 10, out hit)) {
-
+        if (Physics.Raycast(transform.position, transform.forward * 10, out hit))
+        {
+            selectedObject = null;
             Debug.Log("hit" + hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null) {
+            if (target != null)
+            {
 
                 target.OutlineEnable();
                 selectedObject = target.gameObject;
             }
+
         }
     }
 }
