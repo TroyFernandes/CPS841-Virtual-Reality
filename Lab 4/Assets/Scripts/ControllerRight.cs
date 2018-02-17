@@ -7,8 +7,10 @@ public class ControllerRight : MonoBehaviour {
     SteamVR_TrackedController controller;
     public LineRenderer lineRenderer;
     public GameObject selectedObject;
+    ChangeColor changeColor;
     // Use this for initialization
     void Start() {
+        changeColor = new ChangeColor();
         lineRenderer = GetComponent<LineRenderer>();
 
         controller = GetComponent<SteamVR_TrackedController>();
@@ -22,7 +24,8 @@ public class ControllerRight : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Debug.DrawRay(transform.position, transform.forward * 10, Color.green);
+
+        //Debug.DrawRay(transform.position, transform.forward * 10, Color.green);
 
     }
 
@@ -31,19 +34,26 @@ public class ControllerRight : MonoBehaviour {
         Debug.Log("Fired");
         RaycastHit hit;
 
-        //Instantiate(balloon);
         if (Physics.Raycast(transform.position, transform.forward * 10, out hit))
         {
             selectedObject = null;
             Debug.Log("hit" + hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
+            ChangeColor changeColor = hit.transform.GetComponent<ChangeColor>();
             if (target != null)
             {
-
                 target.OutlineEnable();
                 selectedObject = target.gameObject;
+            }
+            if (changeColor != null) {
+                changeColor.setColor(selectedObject);
             }
 
         }
     }
+
+    public GameObject getGameObject() {
+        return selectedObject;
+    }
+
 }
