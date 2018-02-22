@@ -1,8 +1,6 @@
 // Delete two of the following three lines, leaving only the true statement and fill in the blanks.
 
 1) I've completed this statement by myself entirely.
-2) I've recieved verbal/minor help from _________________
-3) I've recieved major help/code from ______________________
 
 
 //	Place your attributions below:
@@ -18,3 +16,7 @@
 //	https://stackoverflow.blog/2009/06/attribution-required/
 
 
+//You can select an object by pointing with the right controller and pressing the trigger button
+//Delselecting works by pointing anywhere else and pressing the trigger button
+//Only a button exists in the scene
+//Top down view monitor was implemented
