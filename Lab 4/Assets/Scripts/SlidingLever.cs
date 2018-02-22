@@ -41,8 +41,8 @@ public class SlidingLever : Interactable {
     // WandController attachedController;
     
     void Start () {
-        handle = transform.FindChild("Handle");
-        handleBar = handle.FindChild("HandleBar");
+        handle = transform.Find("Handle");
+        handleBar = handle.Find("HandleBar");
         Value = handle.localPosition.x;
 	}
 	
